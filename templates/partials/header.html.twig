@@ -1,0 +1,20 @@
+<header>
+        <div class="logo-container"> 
+        <a href="{{ path('app_home') }}">
+            <img src="{{ asset('images/Logo.png') }}" alt="Logo" class="logo">
+        </a>
+        <p class="slogan">Votre slogan ici</p> 
+    </div>
+    <nav>
+        <ul>
+            {% if app.user %}
+                <li><a href="{{ path('app_home') }}" class="{% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">Accueil</a></li>
+                <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+            {% else %}
+                <li><a href="{{ path('app_home') }}" class="{% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">Accueil</a></li>
+                <li><a href="{{ path('app_register') }}" class="{% if app.request.attributes.get('_route') == 'app_register' %}active{% endif %}">S'inscrire</a></li>
+                <li><a href="{{ path('app_login') }}" class="{% if app.request.attributes.get('_route') == 'app_login' %}active{% endif %}">Se connecter</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>

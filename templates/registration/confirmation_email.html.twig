@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Confirmation d'Email</title>
+</head>
+<body>
+    <p>Bonjour {{ user.username }},</p>
+    <p>Veuillez confirmer votre adresse email en cliquant sur le lien ci-dessous :</p>
+    <a href="{{ signedUrl }}">Confirmer mon email</a>
+    <p>Ce lien expirera dans {{ expiresAtMessageKey|trans(expiresAtMessageData) }}.</p>
+</body>
+</html>

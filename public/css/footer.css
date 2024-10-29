@@ -1,0 +1,18 @@
+footer {
+    text-align: center; /* Centre le texte */
+    padding: 20px 0; /* Ajoute un peu d'espace autour du texte */
+    background-color: #f8f9fa; /* Optionnel : couleur de fond */
+    margin-top: 20px; /* Optionnel : espace au-dessus du footer */
+    color: black; /* Couleur du texte en noir */
+    border: 5px solid transparent; /* Bordure pour créer de l'espace */
+    border-radius: 15px; /* Pour adoucir les coins si nécessaire */
+}
+
+/* Styles pour les paragraphes */
+footer p {
+    margin: 5px 0; /* Ajoute un peu d'espace entre les lignes */
+}
+
+footer p a{
+    color: black;
+}
