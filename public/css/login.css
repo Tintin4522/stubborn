@@ -1,5 +1,5 @@
 .login-container {
-    border: 1px solid black; /* Bordure bleue */
+    border: 1px solid black; /* Bordure noire */
     padding: 20px; /* Espacement intérieur */
     margin: 0 auto; /* Centre le conteneur */
     max-width: 400px; /* Largeur maximale */
@@ -8,38 +8,20 @@
 
 .separator {
     border: none; /* Pas de bordure par défaut */
-    border-top: 1px solid #007bff ; /* Ligne de séparation bleue */
+    border-top: 1px solid #007bff; /* Ligne de séparation bleue */
     margin: 20px 0; /* Marge en haut et en bas */
 }
 
 .login-form {
     display: flex; /* Utilise Flexbox pour la mise en page */
     flex-direction: column; /* Aligne les enfants verticalement */
-    align-items: center; /* Centre les éléments horizontalement */
-}
-
-.btn-login,
-.btn-primary {
-    width: 35%; /* S'assure que les boutons remplissent tout l'espace disponible */
-    max-width: 300px; /* Largeur maximale pour les boutons */
-    margin-top: 10px; /* Ajoute un peu d'espace entre les boutons */
-    font-size: 18px;
-}
-
-.btn-primary {
-    background-color: #007bff; /* Couleur de fond du bouton */
-    border-color: #007bff; /* Couleur de la bordure du bouton */
-    border-radius: 5px;
-    color: white;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3; /* Couleur au survol */
-    border-color: #0056b3; /* Couleur de la bordure au survol */
+    width: 100%; /* S'assure que le formulaire occupe toute la largeur */
 }
 
 .form-group {
+    width: 100%; /* S'assure que chaque groupe de formulaire occupe toute la largeur */
     margin-bottom: 15px; /* Ajoute de l'espace entre les groupes de formulaires */
+    text-align: left;
 }
 
 .form-group label {
@@ -54,5 +36,41 @@
 }
 
 input {
-    max-width: 95%;
+    max-width: 100%; /* S'assure que les champs de saisie remplissent toute la largeur */
+}
+
+/* Centrer les boutons dans un conteneur */
+.btn-container {
+    display: flex; /* Utilise Flexbox pour centrer le contenu */
+    justify-content: center; /* Centre les éléments horizontalement */
+    width: 100%; /* S'assure que le conteneur occupe tout l'espace disponible */
+}
+
+.btn-container .btn {
+    flex: 1; /* Permet aux boutons de remplir l'espace disponible */
+}
+
+.btn-custom {
+    background-color: #007bff; /* Couleur de fond bleue */
+    border: none; /* Pas de bordure */
+    color: white; /* Couleur du texte en blanc */
+    padding: 12px 20px; /* Espacement intérieur */
+    border-radius: 5px; /* Bords arrondis */
+    font-size: 16px; /* Taille de la police */
+    text-align: center; /* Centre le texte */
+    text-decoration: none; /* Enlève le soulignement des liens */
+    display: inline-block; /* Permet d'utiliser les propriétés de bloc tout en étant en ligne */
+    cursor: pointer; /* Change le curseur au survol */
+    transition: background-color 0.3s ease, transform 0.3s ease; /* Transition pour l'effet au survol */
+    width: 80%; /* S'assure que le bouton remplit tout l'espace disponible */
+}
+
+.btn-custom:hover {
+    background-color: #0056b3; /* Couleur au survol */
+    transform: translateY(-2px); /* Léger effet d'élévation au survol */
+}
+
+.btn-custom:active {
+    background-color: #004494; /* Couleur au clic */
+    transform: translateY(0); /* Retourne à la position originale au clic */
 }

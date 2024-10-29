@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/produit.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="product-container">
+    <div class="product-image">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+    </div>
+    <div class="product-details">
+        <img src="{{ asset('images/' ~ product.image) }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p>Prix: {{ product.price }}€</p>
+        <label for="size">Taille:</label>
+        <select name="size" id="size">
+            <option value="XS">XS</option>
+            <option value="S">S</option>
+            <option value="M">M</option>
+            <option value="L">L</option>
+            <option value="XL">XL</option>
+        </select>
+        <button class="add-to-cart-button">Ajouter au panier</button>
+    </div>
+</div>
+{% endblock %}

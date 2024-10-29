@@ -1,0 +1,19 @@
+.product-image {
+    margin-bottom: 15px; /* Espace entre l'image et le texte */
+}
+
+.product-name {
+    font-size: 1.2em; /* Taille de police pour le nom */
+    margin: 0; /* Enlève les marges */
+}
+
+.product-price {
+    font-size: 1em; /* Taille de police pour le prix */
+    color: #555; /* Couleur grise pour le prix */
+    margin: 5px 0; /* Marges verticales pour le prix */
+}
+
+/* Optionnel : ajouter un style pour le bouton */
+.btn-primary {
+    margin-left: auto; /* Pour s'assurer que le bouton est toujours à droite */
+}

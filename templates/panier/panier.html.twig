@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/panier.css') }}">
+{% endblock %}
+
+{% block body %}
+<div class="cart-container">
+    {% if cartItems is empty %}
+        <p>Votre panier est vide.</p>
+    {% else %}
+        {% for item in cartItems %}
+        <div class="cart-item">
+            <div class="cart-image">
+                <img src="{{ item.product.image }}" alt="{{ item.product.name }}">
+            </div>
+            <div class="cart-details">
+                <h3>{{ item.product.name }}</h3>
+                <p>Prix: {{ item.price }}€</p>
+                <p>Taille: {{ item.size }}</p>
+            </div>
+            <div class="cart-actions">
+                <button class="remove-button">Retirer du panier</button>
+            </div>
+        </div>
+        {% endfor %}
+        <div class="total-container">
+            <p>Total: {{ total }}€</p>
+            <button class="button-finalize">Finaliser ma commande</button>
+            <button class="button-continue">Continuer mes achats</button>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

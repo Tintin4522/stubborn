@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/back_office.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="product-form">
+        <h2>Ajouter un Produit</h2>
+        {{ form_start(form, {'attr': {'data-turbo': 'true'}}) }}
+        <div class="product-fields">
+            <div>
+                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)' } }) }}
+                <div id="image-preview" style="width: 200px; height: 200px; border: 1px solid #ccc;">
+                    <!-- L'image prévisualisée s'affichera ici -->
+                </div>
+            </div>
+            {{ form_row(form.name) }}
+            {{ form_row(form.price) }}
+            {% for stockForm in form.stocks %}
+                <div class="stock-field">
+                    {{ form_row(stockForm.size) }} 
+                    {{ form_row(stockForm.quantity) }} 
+                </div>
+            {% endfor %}
+        </div>
+        <button type="submit">Ajouter</button>
+        {{ form_end(form) }} <!-- N'oublie pas de fermer le formulaire -->
+    </div>
+
+    <div class="product-list">
+        <h2>Produits</h2>
+        {% for product in products %}
+        <div class="product-item">
+            {% if product.imageFilename %}
+                <img src="{{ asset('images-produits/' ~ product.imageFilename) }}" alt="{{ product.name }}">
+            {% else %}
+                <p>Image non disponible</p>
+            {% endif %}
+            <p>{{ product.name }}</p>
+            <p>{{ product.price }}€</p>
+            {% for stock in product.stocks %}
+                <p>{{ stock.size }} : {{ stock.quantity }}</p>
+            {% endfor %}
+            <button><a href="{{ path('product_edit', { id: product.id }) }}">Modifier</a></button>
+            
+            {# Lien pour supprimer le produit avec JavaScript #}
+            <a href="{{ path('product_delete', { id: product.id }) }}" onclick="event.preventDefault(); 
+                if(confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
+                    document.getElementById('delete-form-{{ product.id }}').submit();
+                }">Supprimer</a>
+
+            <form id="delete-form-{{ product.id }}" action="{{ path('product_delete', { id: product.id }) }}" method="post" style="display: none;">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+            </form>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}
