@@ -1,34 +1,20 @@
-.cart-container {
+.product-list {
     width: 80%;
     margin: 20px auto;
 }
 
-.cart-item {
+.product-item {
     display: flex;
+    align-items: center;
     justify-content: space-between;
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 2px solid black;
     margin-bottom: 10px;
 }
 
-.cart-item img {
+.product-item img {
     width: 100px;
     height: 100px;
-}
-
-.cart-details, .cart-actions {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.cart-details {
-    flex: 2;
-}
-
-.cart-actions {
-    flex: 1;
-    align-items: flex-end;
 }
 
 .total-container {
@@ -38,23 +24,85 @@
 
 .button-finalize {
     padding: 10px 20px;
-    background-color: #ff6666;
-    color: white;
-    border: none;
+    font-size: 16px;
     cursor: pointer;
 }
 
-.button-continue {
-    padding: 10px 20px;
-    background-color: #66ff66;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #f8f8f8;
+.total-container {
+    text-align: right;
     margin-top: 20px;
+    display: flex; /* Ajoutez ceci pour activer le mode flex */
+    flex-direction: column; /* Empile les éléments verticalement */
+    align-items: flex-end; /* Aligne les éléments à droite */
 }
+
+.button-finalize,
+.btn-continue {
+    margin-top: 10px; /* Ajoutez un espace entre les boutons */
+    width: 25%;
+}
+
+.btn-success {
+    background-color: #dd8b8b; /* Vert pâle */
+    color: #000; /* Couleur du texte (noir) */
+    border: 2px solid #9e6262; /* Supprime les bordures */
+    padding: 10px 20px; /* Ajoute du padding pour le bouton */
+    text-align: center; /* Centre le texte */
+    text-decoration: none; /* Supprime le soulignement */
+    display: inline-block; /* Permet au bouton d'être en ligne avec d'autres éléments */
+    margin-top: 10px; /* Espace au-dessus */
+    cursor: pointer; /* Change le curseur au survol */
+    border-radius: 5px; /* Arrondit les coins */
+}
+
+.btn-success:hover {
+    background-color: #9e6262; /* Change de couleur au survol */
+}
+
+.btn-continue {
+    background-color: #a8e6cf; /* Vert pâle */
+    color: #000; /* Couleur du texte (noir) */
+    border: 2px solid #6a9686; /* Supprime les bordures */
+    padding: 10px 20px; /* Ajoute du padding pour le bouton */
+    text-align: center; /* Centre le texte */
+    text-decoration: none; /* Supprime le soulignement */
+    display: inline-block; /* Permet au bouton d'être en ligne avec d'autres éléments */
+    margin-top: 10px; /* Espace au-dessus */
+    cursor: pointer; /* Change le curseur au survol */
+    border-radius: 5px; /* Arrondit les coins */
+}
+
+.btn-continue:hover {
+    background-color: #6a9686; /* Change de couleur au survol */
+}
+
+.total-box {
+    background-color: white; /* Couleur de fond blanc */
+    border: 3px solid #000; /* Bordure noire */
+    padding: 10px; /* Espacement intérieur */
+    margin-right: 20px; /* Espacement entre le total et les boutons */
+    flex-grow: 1; /* Permet à la boîte du total de s'étendre si nécessaire */
+    color: black; /* Couleur du texte noir */
+}
+
+.btn-remove {
+    background-color: white; /* Couleur de fond blanche */
+    border: 2px solid black; /* Bordure noire */
+    color: black; /* Couleur du texte noire */
+    padding: 10px 15px; /* Ajoute du padding pour un meilleur rendu */
+    text-align: center; /* Centre le texte */
+    text-decoration: none; /* Supprime le soulignement */
+    display: inline-block; /* Permet au bouton d'être en ligne avec d'autres éléments */
+    border-radius: 5px; /* Arrondit les coins */
+    margin-top: 10px; /* Espace au-dessus */
+    cursor: pointer; /* Change le curseur au survol */
+}
+
+.btn-remove:hover {
+    background-color: #f0f0f0; 
+    color: black; 
+    text-decoration: none;
+}
+
+
+

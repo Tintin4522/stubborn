@@ -43,7 +43,7 @@
                                         <h5 class="product-name">{{ product.name }}</h5>
                                         <p class="product-price">{{ product.price }} €</p>
                                     </div>
-                                    {% if app.user %} {# Afficher le bouton seulement si l'utilisateur est connecté #}
+                                    {% if app.user %} 
                                         <a href="{{ path('product_show', { id: product.id }) }}" class="btn btn-primary">Voir</a>
                                     {% endif %}
                                 </div>

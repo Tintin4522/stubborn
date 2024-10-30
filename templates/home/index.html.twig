@@ -8,13 +8,22 @@
 {% block title %}Stubborn{% endblock %}
 
 {% block body %}
-    <div class="container mt-4">
+    <div class="text-center mb-3 presentation">
+        <h1>Stubborn, qui sommes-nous ?</h1>
+        <h2>Bienvenue chez Stubborn</h2>
+        <p>Chez Stubborn, nous redéfinissons le style streetwear avec nos pulls de haute qualité, alliant confort et esthétique urbaine. 
+            Fondée par des passionnés de mode, notre marque s'engage à offrir des designs audacieux qui reflètent votre individualité.</p>
+        <p>Nous croyons en une mode responsable, c'est pourquoi nous utilisons des matériaux durables et travaillons avec des fabricants éthiques. 
+            Explorez notre collection pour découvrir des pièces uniques qui vous feront vous démarquer.</p>
+        <p>Rejoignez notre communauté et montrez au monde qui vous êtes vraiment avec Stubborn !</p>
+    </div>    
+        <div class="container mt-4">
         {% if featuredProducts is not empty %}
-            <h2 class="text-center">Produits en vedette</h2>
+            <h2 class="text-center">Nos produits les plus demandés</h2>
             <div class="row">
                 {% for product in featuredProducts %}
-                    <div class="col-md-4 mb-4"> {# Chaque produit occupe 4 colonnes sur un total de 12 #}
-                        <div class="card h-100"> {# h-100 pour faire en sorte que toutes les cartes aient la même hauteur #}
+                    <div class="col-md-4 mb-4"> 
+                        <div class="card h-100"> 
                             <div class="card-body">
                                 <div class="text-center mb-3">
                                     <div class="product-image">
@@ -25,12 +34,12 @@
                                         {% endif %}
                                     </div>
                                 </div>
-                                <div class="d-flex justify-content-between align-items-center"> {# Flexbox pour aligner le contenu #}
+                                <div class="d-flex justify-content-between align-items-center"> 
                                     <div>
                                         <h5 class="product-name">{{ product.name }}</h5>
                                         <p class="product-price">{{ product.price }} €</p>
                                     </div>
-                                    {% if user %} {# Afficher le bouton seulement si l'utilisateur est connecté #}
+                                    {% if user %} 
                                         <a href="{{ path('product_show', { id: product.id }) }}" class="btn btn-primary">Voir</a>
                                     {% endif %}
                                 </div>

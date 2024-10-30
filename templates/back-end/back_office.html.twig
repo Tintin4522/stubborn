@@ -5,6 +5,8 @@
     <link rel="stylesheet" href="{{ asset('css/back_office.css') }}">
 {% endblock %}
 
+{% block title %}Back-office{% endblock %}
+
 {% block body %}
     <div class="product-form">
         <h2>Ajouter un Produit</h2>
@@ -43,13 +45,12 @@
             {% for stock in product.stocks %}
                 <p>{{ stock.size }} : {{ stock.quantity }}</p>
             {% endfor %}
-            <button><a href="{{ path('product_edit', { id: product.id }) }}">Modifier</a></button>
+            <a href="{{ path('product_edit', { id: product.id }) }}" class="btn-remove">Modifier</a>
             
-            {# Lien pour supprimer le produit avec JavaScript #}
             <a href="{{ path('product_delete', { id: product.id }) }}" onclick="event.preventDefault(); 
                 if(confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
                     document.getElementById('delete-form-{{ product.id }}').submit();
-                }">Supprimer</a>
+                }" class="btn-remove">Supprimer</a>
 
             <form id="delete-form-{{ product.id }}" action="{{ path('product_delete', { id: product.id }) }}" method="post" style="display: none;">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">

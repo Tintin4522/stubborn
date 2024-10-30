@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/product_show.css') }}">
+{% endblock %}
+
+{% block title %}Détails du Produit{% endblock %}
+
+{% block body %}
+    <div class="container product-details">
+        <div class="product-content d-flex">
+            <div class="product-image">
+                {% if product.imageFilename %}
+                    <img src="{{ asset('images-produits/' ~ product.imageFilename) }}" alt="{{ product.name }}">
+                {% else %}
+                    <p>Aucune image disponible</p>
+                {% endif %}
+            </div>
+            <div class="product-info">
+                <h3>{{ product.name }}</h3>
+                <p>Prix : {{ product.price }} €</p>
+                
+                <form action="{{ path('add_to_cart', {'id': product.id}) }}" method="POST">
+                    <label for="size">Taille</label>
+                    <select id="size" name="size" class="form-select mb-3">
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M" selected>M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                    </select>
+                    <button type="submit" class="btn btn-primary">Ajouter au panier</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

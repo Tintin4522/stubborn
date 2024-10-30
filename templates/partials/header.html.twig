@@ -10,7 +10,7 @@
             {% if app.user %}
                 <li><a href="{{ path('app_home') }}" class="{% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">Accueil</a></li>
                 <li><a href="{{ path('shop_products') }}" class="{% if app.request.attributes.get('_route') == 'shop_products' %}active{% endif %}">Boutique</a></li>
-                <li><a href="{{ path('panier_show') }}" class="{% if app.request.attributes.get('_route') == 'panier_show' %}active{% endif %}">Panier</a></li>
+                <li><a href="{{ path('cart_show') }}" class="{% if app.request.attributes.get('_route') == 'cart_show' %}active{% endif %}">Panier</a></li>
                 <li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
             {% else %}
                 <li><a href="{{ path('app_home') }}" class="{% if app.request.attributes.get('_route') == 'app_home' %}active{% endif %}">Accueil</a></li>
