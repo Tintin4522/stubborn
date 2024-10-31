@@ -1,47 +1,46 @@
 .presentation {
-    width: 80%;                   /* Largeur de 80% du conteneur */
-    margin: 0 auto;              /* Centrer l'élément */
-    padding: 20px;               /* Espacement interne */
-    background-color: #f9f9f9;   /* Couleur de fond douce */
-    border-radius: 10px;         /* Coins arrondis */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour un effet de profondeur */
+    width: 80%;                   
+    margin: 0 auto;              
+    padding: 20px;               
+    background-color: #f9f9f9;  
+    border-radius: 5px;      
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); 
 }
 
 .presentation h1 {
-    font-size: 2.5rem;           /* Taille de police pour le titre principal */
-    color: #333;                 /* Couleur du texte */
+    font-size: 2.5rem;           
+    color: #333;                 
 }
 
 .presentation h2 {
-    font-size: 2rem;             /* Taille de police pour le sous-titre */
-    color: #555;                 /* Couleur du texte */
-    margin-top: 20px;            /* Espacement au-dessus du sous-titre */
+    font-size: 2rem;             
+    color: #555;                 
+    margin-top: 20px;           
 }
 
 .presentation p {
-    font-size: 1rem;             /* Taille de police pour les paragraphes */
-    color: #666;                 /* Couleur du texte */
-    line-height: 1.5;            /* Hauteur de ligne pour un meilleur espacement */
-    margin-top: 10px;            /* Espacement au-dessus des paragraphes */
+    font-size: 1rem;             
+    color: #666;               
+    line-height: 1.5;            
+    margin-top: 10px;            
 }
 
 
 .product-image {
-    margin-bottom: 15px; /* Espace entre l'image et le texte */
+    margin-bottom: 15px; 
 }
 
 .product-name {
-    font-size: 1.2em; /* Taille de police pour le nom */
-    margin: 0; /* Enlève les marges */
+    font-size: 1.2em; 
+    margin: 0; 
 }
 
 .product-price {
-    font-size: 1em; /* Taille de police pour le prix */
-    color: #555; /* Couleur grise pour le prix */
-    margin: 5px 0; /* Marges verticales pour le prix */
+    font-size: 1em; 
+    color: #555; 
+    margin: 5px 0; 
 }
 
-/* Optionnel : ajouter un style pour le bouton */
 .btn-primary {
-    margin-left: auto; /* Pour s'assurer que le bouton est toujours à droite */
+    margin-left: auto; 
 }

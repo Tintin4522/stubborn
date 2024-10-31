@@ -12,11 +12,15 @@ use SymfonyCasts\Bundle\VerifyEmail\VerifyEmailHelperInterface;
 
 class EmailVerifier
 {
-    public function __construct(
-        private VerifyEmailHelperInterface $verifyEmailHelper,
-        private MailerInterface $mailer,
-        private EntityManagerInterface $entityManager
-    ) {
+    private MailerInterface $mailer;
+    private VerifyEmailHelperInterface $verifyEmailHelper; // Dépendance pour la vérification des emails
+    private EntityManagerInterface $entityManager; // Dépendance pour l'Entity Manager
+
+    public function __construct(MailerInterface $mailer, VerifyEmailHelperInterface $verifyEmailHelper, EntityManagerInterface $entityManager)
+    {
+        $this->mailer = $mailer;
+        $this->verifyEmailHelper = $verifyEmailHelper; // Initialisation de la dépendance
+        $this->entityManager = $entityManager; // Initialisation de l'Entity Manager
     }
 
     public function sendEmailConfirmation(string $verifyEmailRouteName, User $user, TemplatedEmail $email): void

@@ -1,0 +1,60 @@
+.back-button {
+    margin-top: 20px; /* Ajoute un espacement au-dessus du bouton */
+}
+
+.back-button a {
+    text-decoration: none;
+    color: white;
+    background-color: #007bff; /* Couleur de fond bleu */
+    padding: 10px 20px; /* Espacement à l'intérieur du bouton */
+    border-radius: 5px; /* Bords arrondis */
+    transition: background-color 0.3s; /* Animation pour le changement de couleur */
+}
+
+.back-button a:hover {
+    background-color: #0056b3; /* Couleur de fond plus foncée au survol */
+}
+
+.product-edit-form {
+    max-width: 80%; /* Limiter la largeur à 80% de l'écran */
+}
+
+#image-preview {
+    border: 1px solid #ccc;
+    border-radius: 5px; /* Arrondir les coins de l'aperçu de l'image */
+    background-color: #f8f9fa; /* Couleur de fond claire */
+    padding: 5px; /* Ajoute du rembourrage à l'intérieur de l'aperçu de l'image */
+}
+
+.size-field + label::after {
+    content: attr(value); /* Affiche la taille en tant que texte brut */
+    display: inline-block;
+    font-weight: normal;
+    color: #f8f9fa; /* Changez selon vos préférences */
+}
+
+.checkbox-label {
+    flex: 2;
+    margin-right: 10px; /* Ajoute un espacement à droite du label */
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.checkbox-input {
+    align-self: flex-end;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.form-control {
+    max-width: 80%;
+    margin-left: 1rem;
+}
+
+.stocks {
+    display: flex;                /* Utiliser Flexbox */
+    justify-content: center;      /* Centrer horizontalement */
+    align-items: center;          /* Centrer verticalement */
+    height: 100%;                 /* Optionnel : hauteur du conteneur */
+}
+

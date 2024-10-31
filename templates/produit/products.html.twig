@@ -9,22 +9,29 @@
 {% block title %}Tous les Produits{% endblock %}
 
 {% block body %}
+    <h2 class="text-center">Produits disponibles</h2>
     <div class="container mt-4">
-        <form method="get" action="{{ path('shop_products') }}" class="mb-4">
-            <div class="form-group">
-                <label for="priceRange">Filtrer par tranche de prix :</label>
-                <select name="priceRange" id="priceRange" class="form-control">
-                    <option value="">Sélectionnez une tranche</option>
-                    <option value="10-30">10 à 30 €</option>
-                    <option value="30-35">30 à 35 €</option>
-                    <option value="35-50">35 à 50 €</option>
-                </select>
-            </div>
-            <button type="submit" class="btn btn-primary mt-2">Filtrer</button>
-        </form>
         {% if Products is not empty %}
-            <h2 class="text-center">Produits disponibles</h2>
-            <div class="row">
+        <div class="row">
+            <div class="col-md-4 mb-4 d-flex align-items-center justify-content-center">
+                <div class="card border-0 body" style="background-color: #f8f9fa">
+                    <form method="get" action="{{ path('shop_products') }}">
+                        <div class="form-group">
+                            <label for="priceRange">Filtrer par prix :</label>
+                            <select name="priceRange" id="priceRange" class="form-control w-100">
+                                <option value="">Tous nos produits</option>
+                                <option value="10-30">10 à 30 €</option>
+                                <option value="30-35">30 à 35 €</option>
+                                <option value="35-50">35 à 50 €</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2 w-100">Filtrer</button>
+                    </form>
+                </div>
+            </div>
+
+                    
+            
                 {% for product in Products %}
                     <div class="col-md-4 mb-4">
                         <div class="card h-100">
@@ -51,9 +58,11 @@
                         </div>
                     </div>
                 {% endfor %}
-            </div>
-        {% else %}
-            <p>Aucun produit disponible.</p>
-        {% endif %}
+            
+            {% else %}
+                <p>Aucun produit disponible.</p>
+            {% endif %}
+        </div>
     </div>
+
 {% endblock %}

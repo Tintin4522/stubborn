@@ -1,15 +1,15 @@
 header {
     background-color: #f8f9fa;
     padding: 20px;
-    display: flex; /* Utiliser flex pour aligner les éléments */
+    display: flex; 
     align-items: flex-start;
 }
 
 .logo-container {
     display: flex;
-    flex-direction: column; /* Aligne l'image et le slogan en colonne */
-    align-items: flex-start; /* Aligne à gauche */
-    margin-right: auto; /* Ajoute de l'espace à droite pour le menu */
+    flex-direction: column; 
+    align-items: flex-start; 
+    margin-right: auto; 
 }
 
 .logo {
@@ -17,18 +17,18 @@ header {
 }
 
 nav {
-    display: flex; /* Utiliser flex pour le menu */
+    display: flex; 
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
-    margin: 0; /* Enlever la marge pour un alignement parfait */
+    margin: 0; 
 }
 
 nav ul li {
     display: inline;
-    margin-left: 20px; /* Pour espacer les éléments du menu */
+    margin-left: 20px; 
 }
 
 nav ul li a {
@@ -41,14 +41,14 @@ nav ul li a:hover {
 }
 
 nav ul li a.active {
-    font-weight: bold; /* Met le texte en gras pour l'élément actif */
-    color: black; /* Change la couleur si tu le souhaites */
+    font-weight: bold; 
+    color: black; 
     text-decoration: underline;
 }
 
 .slogan {
-    text-align: left; /* Aligne le texte à gauche */
-    font-size: 1.2em; /* Taille de la police */
-    color: #555; /* Couleur du texte */
-    margin-top: -5px; /* Espace au-dessus et en dessous du slogan */
+    text-align: left; 
+    font-size: 0.7rem; 
+    color: #555; 
+    margin-top: -5px; 
 }

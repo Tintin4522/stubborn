@@ -1,32 +1,45 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('css/product_edit.css') }}">
+{% endblock %}
+
 {% block body %}
-    <div class="product-edit-form">
-        <h2>Modifier le Produit : {{ product.name }}</h2>
-        {# Remplacez cette ligne par la suivante #}
+    <div class="container mt-4">
+    <h2 class="text-center">Modifier le Produit : {{ product.name }}</h2>
         {{ form_start(form, {'attr': {'action': path('product_update', { id: product.id }), 'method': 'POST'}}) }}
-        <div class="product-fields">
-            <div>
-                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)' } }) }}
-                <div id="image-preview" style="width: 200px; height: 200px; border: 1px solid #ccc;">
-                    {% if product.imageFilename %}
-                        <img src="{{ asset('images-produits/' ~ product.imageFilename) }}" alt="{{ product.name }}" style="width: 100%; height: auto;">
-                    {% else %}
-                        <p>Aucune image disponible</p>
-                    {% endif %}
-                </div>
-            </div>
-            {{ form_row(form.name) }}
-            {{ form_row(form.price) }}
-            {% for stockForm in form.stocks %}
-                <div class="stock-field">
-                    {{ form_row(stockForm.size) }} 
-                    {{ form_row(stockForm.quantity) }} 
-                </div>
-            {% endfor %}
-            {{ form_row(form.isFeatured) }} {# Case à cocher pour la mise en avant #}
+        <div class="row g-3 mt-5">
+            <div class="col md-4">                                
+                <div class="d-flex align-items-start">
+                    <div style="flex: 1;">
+                        <div>
+                            {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)' } }) }}
+                            <div id="image-preview" style="width: 200px; height: 250px; border: 1px solid #ccc; margin-top: 10px;">
+                                {% if product.imageFilename %}
+                                    <img src="{{ asset('images-produits/' ~ product.imageFilename) }}" alt="{{ product.name }}" style="width: 100%; height: auto;">
+                                {% else %}
+                                    <p>Aucune image disponible</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="flex: 2;">
+                        {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}                       
+                        {{ form_row(form.isFeatured, {'attr': {'class': 'form-check-input'}}) }} 
+                    </div>
+                    <div class="d-flex flex-column justify-content-center align-items-center">
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                        <div class="back-button mt-2">
+                            <a href="{{ path('back_office') }}" class="btn btn-secondary">Retour à la page admin</a>
+                        </div>
+                    </div>
+                
+                </div>                      
+            </div>    
         </div>
-        <button type="submit">Modifier</button>
         {{ form_end(form) }}
     </div>
 {% endblock %}

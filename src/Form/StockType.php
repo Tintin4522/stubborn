@@ -15,10 +15,13 @@ class StockType extends AbstractType
     {
         $builder
             ->add('size', TextType::class, [
-                'label' => 'taille',
+                'label' => 'Taille :',
+                'attr' => ['readonly' => true, 'class' => 'form-control size-field'], 
             ])
             ->add('quantity', IntegerType::class, [
-                'required' => false, 
+                'required' => false,
+                'label' => 'Quantité',
+                'attr' => ['min' => 0, 'class' => 'form-control quantity-field'], 
             ]);
     }
 
@@ -29,4 +32,3 @@ class StockType extends AbstractType
         ]);
     }
 }
-
