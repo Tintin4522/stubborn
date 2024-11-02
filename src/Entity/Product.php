@@ -27,7 +27,7 @@ class Product
     /**
      * @var Collection<int, Stock>
      */
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Stock::class, cascade: ['persist'], orphanRemoval: true)]
+    #[ORM\OneToMany(mappedBy: 'product', targetEntity: Stock::class, cascade: ['persist', 'remove'], orphanRemoval: true)]
     private Collection $stocks;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
@@ -67,35 +67,6 @@ class Product
         return $this;
     }
 
-    /**
-     * @return Collection<int, Stock>
-     */
-    public function getStocks(): Collection
-    {
-        return $this->stocks;
-    }
-
-    public function addStock(Stock $stock): static
-    {
-        if (!$this->stocks->contains($stock)) {
-            $this->stocks->add($stock);
-            $stock->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStock(Stock $stock): static
-    {
-        if ($this->stocks->removeElement($stock)) {
-            if ($stock->getProduct() === $this) {
-                $stock->setProduct(null);
-            }
-        }
-
-        return $this;
-    }
-
     public function getImageFilename(): ?string
     {
         return $this->imageFilename;
@@ -120,4 +91,29 @@ class Product
         return $this;
     }
 
+    public function getStocks(): Collection
+    {
+        return $this->stocks;
+    }
+
+    public function addStock(Stock $stock): self
+    {
+        if (!$this->stocks->contains($stock)) {
+            $this->stocks->add($stock);
+            $stock->setProduct($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStock(Stock $stock): self
+    {
+        if ($this->stocks->removeElement($stock)) {
+            if ($stock->getProduct() === $this) {
+                $stock->setProduct(null);
+            }
+        }
+
+        return $this;
+    }
 }

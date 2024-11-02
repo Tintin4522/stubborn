@@ -17,7 +17,7 @@ use App\Service\CartService;
 
 class ProductController extends AbstractController
 {
-    private $entityManager;
+    
 
     #[Route('/product/{id}', name: 'product_show')]
     public function show(Product $product): Response
@@ -55,35 +55,6 @@ class ProductController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('back_office');
-    }
-
-    #[Route('/product/{id}/edit', name: 'product_edit')]
-    public function editForm(Request $request, Product $product): Response
-    {
-        
-        if ($product->getStocks()->isEmpty()) {
-            $sizes = ['XS', 'S', 'M', 'L', 'XL'];
-            foreach ($sizes as $size) {
-                $stock = new Stock();
-                $stock->setSize($size);
-                $product->addStock($stock);
-            }
-        }
-
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $this->entityManager->persist($product);
-            $this->entityManager->flush();
-
-            return $this->redirectToRoute('back_office');
-        }
-
-        return $this->render('produit/product_edit.html.twig', [
-            'form' => $form->createView(),
-            'product' => $product,
-        ]);
     }
 
     #[Route('/product/{id}/update', name: 'product_update', methods: ['POST'])]

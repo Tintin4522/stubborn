@@ -20,12 +20,8 @@
             </div>
             {{ form_row(form.name) }}
             {{ form_row(form.price) }}
-            {% for stockForm in form.stocks %}
-                <div class="stock-field">
-                    {{ form_row(stockForm.size) }} 
-                    {{ form_row(stockForm.quantity) }} 
-                </div>
-            {% endfor %}
+            
+        </div>
         </div>
         <div class="d-flex justify-content-end mt-3">
             <button type="submit" class="btn btn-remove">Ajouter</button>
@@ -46,11 +42,13 @@
             <p>{{ product.price }}€</p>
             {% if product.stocks|length > 0 %}
                 <span class="separatorVertical"></span>
-                <p>Taille disponible :</p> 
-                <div class="stock-list"> 
-                    {% for stock in product.stocks %}
-                        <p>{{ stock.size }} : {{ stock.quantity }}</p> 
-                    {% endfor %}
+                <p>Taille disponible :</p>
+                <div class="stock-list">
+                    <p>XS : {% if product.stocks[0].quantityXS is not null %}{{ product.stocks[0].quantityXS }}{% else %}Non disponible{% endif %}</p>
+                    <p>S : {% if product.stocks[0].quantityS is not null %}{{ product.stocks[0].quantityS }}{% else %}Non disponible{% endif %}</p>
+                    <p>M : {% if product.stocks[0].quantityM is not null %}{{ product.stocks[0].quantityM }}{% else %}Non disponible{% endif %}</p>
+                    <p>L : {% if product.stocks[0].quantityL is not null %}{{ product.stocks[0].quantityL }}{% else %}Non disponible{% endif %}</p>
+                    <p>XL : {% if product.stocks[0].quantityXL is not null %}{{ product.stocks[0].quantityXL }}{% else %}Non disponible{% endif %}</p>
                 </div>
             {% endif %}
             <div>    
@@ -68,4 +66,6 @@
         </div>
         {% endfor %}
     </div>
+
+        
 {% endblock %}
