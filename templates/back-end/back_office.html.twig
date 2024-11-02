@@ -27,7 +27,9 @@
                 </div>
             {% endfor %}
         </div>
-        <button type="submit">Ajouter</button>
+        <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-remove">Ajouter</button>
+        </div>
         {{ form_end(form) }} <!-- N'oublie pas de fermer le formulaire -->
     </div>
 
@@ -42,19 +44,27 @@
             {% endif %}
             <p>{{ product.name }}</p>
             <p>{{ product.price }}€</p>
-            {% for stock in product.stocks %}
-                <p>{{ stock.size }} : {{ stock.quantity }}</p>
-            {% endfor %}
-            <a href="{{ path('product_edit', { id: product.id }) }}" class="btn-remove">Modifier</a>
-            
-            <a href="{{ path('product_delete', { id: product.id }) }}" onclick="event.preventDefault(); 
-                if(confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
-                    document.getElementById('delete-form-{{ product.id }}').submit();
-                }" class="btn-remove">Supprimer</a>
+            {% if product.stocks|length > 0 %}
+                <span class="separatorVertical"></span>
+                <p>Taille disponible :</p> 
+                <div class="stock-list"> 
+                    {% for stock in product.stocks %}
+                        <p>{{ stock.size }} : {{ stock.quantity }}</p> 
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div>    
+                <a href="{{ path('product_edit', { id: product.id }) }}" class="btn-remove">Modifier</a>
+                
+                <a href="{{ path('product_delete', { id: product.id }) }}" onclick="event.preventDefault(); 
+                    if(confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
+                        document.getElementById('delete-form-{{ product.id }}').submit();
+                    }" class="btn-remove">Supprimer</a>
 
-            <form id="delete-form-{{ product.id }}" action="{{ path('product_delete', { id: product.id }) }}" method="post" style="display: none;">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
-            </form>
+                <form id="delete-form-{{ product.id }}" action="{{ path('product_delete', { id: product.id }) }}" method="post" style="display: none;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
+                </form>
+            </div>
         </div>
         {% endfor %}
     </div>

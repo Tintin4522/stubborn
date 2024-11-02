@@ -100,7 +100,7 @@ class ProductController extends AbstractController
         }
 
         // Si le formulaire n'est pas valide, vous pouvez rediriger vers la page d'édition ou afficher les erreurs
-        return $this->render('product/product_edit.html.twig', [
+        return $this->render('produit/product_edit.html.twig', [
             'form' => $form->createView(),
             'product' => $product,
         ]);

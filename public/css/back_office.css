@@ -14,7 +14,6 @@
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 10px;
-    border: 2px solid black;
     margin-bottom: 10px;
 }
 
@@ -59,4 +58,22 @@
     background-color: #f0f0f0; 
     color: black; 
     text-decoration: none;
+}
+
+.separatorVertical {
+    width: 1px; /* Largeur de la ligne de séparation */
+    background-color: #ccc; /* Couleur de la ligne de séparation */
+    height: 50px; /* Hauteur de la ligne de séparation */
+    display: inline-block; /* Pour s'afficher dans la même ligne */
+    margin: 0 10px; /* Espace autour de la ligne de séparation */
+}
+
+.stock-list {
+    display: flex;
+    flex-direction: column; /* Assure que les stocks s'affichent en colonne */
+    margin-top: 10px; /* Ajoute un peu d'espace au-dessus de la liste des stocks */
+}
+
+.stock-list p {
+    margin: 0; /* Enlève les marges par défaut des paragraphes pour un meilleur alignement */
 }

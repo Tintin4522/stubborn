@@ -121,7 +121,7 @@ class BackOfficeController extends AbstractController
             return $this->redirectToRoute('back_office');
         }
 
-        return $this->render('product/new.html.twig', [
+        return $this->render('produit/new.html.twig', [
             'form' => $form->createView(),
         ]);
     }
