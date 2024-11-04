@@ -44,7 +44,7 @@ class ProductType extends AbstractType
                 'allow_delete' => true,
                 'prototype' => true,
                 'label' => false,
-                'attr' => ['class' => 'stocks'],
+                'attr' => ['class' => 'stocks2'],
             ]);
             
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {

@@ -8,6 +8,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints as Assert;
 
 class StockType extends AbstractType
 {
@@ -23,6 +24,12 @@ class StockType extends AbstractType
                 'attr' => ['class' => 'quantity-input'],
                 'required' => false,
                 'empty_data' => 0,
+                'constraints' => [
+                    new Assert\GreaterThanOrEqual([
+                        'value' => 0,
+                        'message' => 'La quantité doit être un nombre entier positif ou zéro.',
+                    ]),
+                ],
             ]);
     }
 
