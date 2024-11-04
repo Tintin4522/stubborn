@@ -6,8 +6,6 @@ use App\Entity\Product;
 use App\Entity\User;
 use App\Entity\Panier;
 use App\Entity\PanierItem;
-use App\Entity\Stock;
-use App\Form\ProductType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -55,26 +53,6 @@ class ProductController extends AbstractController
         $entityManager->flush();
 
         return $this->redirectToRoute('back_office');
-    }
-
-    #[Route('/product/{id}/update', name: 'product_update', methods: ['POST'])]
-    public function update(Request $request, EntityManagerInterface $entityManager, Product $product): Response
-    {
-        $form = $this->createForm(ProductType::class, $product);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-            $this->addFlash('success', 'Produit mis à jour avec succès.');
-
-            return $this->redirectToRoute('back_office');
-        }
-
-        // Si le formulaire n'est pas valide, vous pouvez rediriger vers la page d'édition ou afficher les erreurs
-        return $this->render('produit/product_edit.html.twig', [
-            'form' => $form->createView(),
-            'product' => $product,
-        ]);
     }
 
     #[Route('/product/{id}/add-to-cart', name: 'add_to_cart')]

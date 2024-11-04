@@ -6,7 +6,6 @@ use App\Entity\Product;
 use App\Entity\Stock;
 use App\Form\ProductType;
 use App\Repository\ProductRepository;
-use App\Repository\StockRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +15,15 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
 class BackOfficeController extends AbstractController
-{
+{   
+        /**
+     * Affiche le tableau de bord pour les administrateurs.
+     *
+     * @param ProductRepository $productRepository Le dépôt des produits.
+     * @param Request $request La requête HTTP.
+     * @param EntityManagerInterface $entityManager L'interface pour gérer les entités.
+     * @return Response La réponse HTTP avec la vue du tableau de bord.
+     */
     #[Route('/admin', name: 'back_office')] 
     public function index(ProductRepository $productRepository, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -70,7 +77,12 @@ class BackOfficeController extends AbstractController
         return $this->createForm(ProductType::class, $product);
     }
 
-
+    /**
+     * Gère l'upload d'une image.
+     *
+     * @param Request $request La requête HTTP contenant le fichier.
+     * @return Response La réponse JSON indiquant le succès ou l'échec de l'upload.
+     */
     #[Route('/upload-image', name: 'upload_image', methods: ['POST'])]
     public function uploadImage(Request $request): Response
     {
@@ -96,28 +108,13 @@ class BackOfficeController extends AbstractController
     {
         $product = new Product();
     
+        // Ajouter les tailles par défaut avec des quantités initiales à 0
         $sizes = ['XS', 'S', 'M', 'L', 'XL'];
         foreach ($sizes as $size) {
             $stock = new Stock();
-            // Assurez-vous de définir la quantité correcte pour chaque taille
-            switch ($size) {
-                case 'XS':
-                    $stock->setQuantityXS(0);
-                    break;
-                case 'S':
-                    $stock->setQuantityS(0);
-                    break;
-                case 'M':
-                    $stock->setQuantityM(0);
-                    break;
-                case 'L':
-                    $stock->setQuantityL(0);
-                    break;
-                case 'XL':
-                    $stock->setQuantityXL(0);
-                    break;
-            }
-            $product->addStock($stock);
+            $stock->setSize($size); // Définir la taille
+            $stock->setQuantity(0); // Quantité initiale à 0
+            $product->addStock($stock); // Ajouter le stock au produit
         }
     
         $form = $this->createForm(ProductType::class, $product);
@@ -125,15 +122,21 @@ class BackOfficeController extends AbstractController
     
         if ($form->isSubmitted() && $form->isValid()) {
             // Gérer l'upload d'image ici...
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
     
-            // Lier chaque stock au produit
-            foreach ($product->getStocks() as $stock) {
-                $stock->setProduct($product); // Assurez-vous que chaque stock est lié
-                $entityManager->persist($stock);
+                try {
+                    $imageFile->move($this->getParameter('images_directory'), $newFilename);
+                    $product->setImageFilename($newFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Erreur lors de l\'upload de l\'image.');
+                }
             }
     
-            $entityManager->persist($product);
-            $entityManager->flush();
+            // Enregistrer le produit et ses stocks
+            $entityManager->persist($product); // Persist le produit
+            $entityManager->flush(); // Sauvegarde des entités
     
             return $this->redirectToRoute('back_office');
         }
@@ -143,35 +146,53 @@ class BackOfficeController extends AbstractController
         ]);
     }
     
+    
     #[Route('/product/{id}/edit', name: 'product_edit')]
     public function edit(Request $request, Product $product, EntityManagerInterface $em): Response
     {
+        // Créer le formulaire avec le produit existant
         $form = $this->createForm(ProductType::class, $product);
         $form->handleRequest($request);
-
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            $stocks = $product->getStocks(); // Récupérer les stocks associés
-
-            foreach ($stocks as $stock) {
-                // Mettre à jour la quantité en fonction de la taille
-                $stock->setQuantityXS($form->get('quantityXS')->getData());
-                $stock->setQuantityS($form->get('quantityS')->getData());
-                $stock->setQuantityM($form->get('quantityM')->getData());
-                $stock->setQuantityL($form->get('quantityL')->getData());
-                $stock->setQuantityXL($form->get('quantityXL')->getData());
+            // Gérer l'upload d'image ici...
+            $imageFile = $form->get('image')->getData();
+            if ($imageFile) {
+                $newFilename = uniqid() . '.' . $imageFile->guessExtension();
+    
+                try {
+                    $imageFile->move($this->getParameter('images_directory'), $newFilename);
+                    $product->setImageFilename($newFilename);
+                } catch (FileException $e) {
+                    $this->addFlash('error', 'Erreur lors de l\'upload de l\'image.');
+                }
             }
-
+    
+            // Mettre à jour les quantités de stock
+            foreach ($product->getStocks() as $stock) {
+                // Vérifier si la taille est définie pour le stock
+                if ($stock->getSize()) {
+                    // Mettre à jour la quantité basée sur le formulaire
+                    // Vous devez avoir ces champs dans le formulaire pour que ça fonctionne correctement
+                    $quantity = $form->get('stocks')->getData();
+                    foreach ($quantity as $updatedStock) {
+                        if ($updatedStock->getSize() === $stock->getSize()) {
+                            $stock->setQuantity($updatedStock->getQuantity());
+                        }
+                    }
+                }
+            }
+    
             $em->flush(); // Enregistrer les modifications
             $this->addFlash('success', 'Produit mis à jour avec succès');
             return $this->redirectToRoute('back_office');
         }
-
+    
         return $this->render('produit/product_edit.html.twig', [
             'form' => $form->createView(),
             'product' => $product,
         ]);
     }
-
     
 
 }

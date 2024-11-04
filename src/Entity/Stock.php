@@ -11,26 +11,18 @@ class Stock
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
-    private ?int $id = null;
+    private $id;
+
+    #[ORM\Column(type: 'integer')]
+    private $quantity = 0;
+
+    #[ORM\Column(type: 'string', length: 50)]
+    private $size;
+
 
     #[ORM\ManyToOne(inversedBy: 'stocks')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Product $product = null;
-
-    #[ORM\Column(type: 'integer')]
-    private $quantity_xs = null;
-
-    #[ORM\Column(type: 'integer')]
-    private $quantity_s = null;
-
-    #[ORM\Column(type: 'integer')]
-    private $quantity_m = null;
-
-    #[ORM\Column(type: 'integer')]
-    private $quantity_l = null;
-
-    #[ORM\Column(type: 'integer')]
-    private $quantity_xl = null;
 
     public function getId(): ?int
     {
@@ -49,59 +41,29 @@ class Stock
         return $this;
     }
 
-    public function getQuantityXS(): ?int
+    public function getSize(): ?string
     {
-        return $this->quantity_xs;
+        return $this->size;
     }
 
-    public function setQuantityXS(int $quantityXS): self
+    public function setSize(string $size): static
     {
-        $this->quantity_xs = $quantityXS;
+        $this->size = $size;
+
         return $this;
     }
 
-    public function getQuantityS(): ?int
+    public function getQuantity(): ?int
     {
-        return $this->quantity_s;
+        return $this->quantity;
     }
 
-    public function setQuantityS(int $quantityS): self
+    public function setQuantity(int $quantity): static
     {
-        $this->quantity_s = $quantityS;
+        $this->quantity = $quantity;
+
         return $this;
     }
 
-    public function getQuantityM(): ?int
-    {
-        return $this->quantity_m;
-    }
-
-    public function setQuantityM(int $quantityM): self
-    {
-        $this->quantity_m = $quantityM;
-        return $this;
-    }
-
-    public function getQuantityL(): ?int
-    {
-        return $this->quantity_l;
-    }
-
-    public function setQuantityL(int $quantityL): self
-    {
-        $this->quantity_l = $quantityL;
-        return $this;
-    }
-
-    public function getQuantityXL(): ?int
-    {
-        return $this->quantity_xl;
-    }
-
-    public function setQuantityXL(int $quantityXL): self
-    {
-        $this->quantity_xl = $quantityXL;
-        return $this;
-    }
 }
 

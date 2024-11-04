@@ -5,29 +5,46 @@
     <link rel="stylesheet" href="{{ asset('css/back_office.css') }}">
 {% endblock %}
 
-{% block title %}Back-office{% endblock %}
+{% block title %}Back-office - Gestion des produits{% endblock %}
 
 {% block body %}
-    <div class="product-form">
-        <h2>Ajouter un Produit</h2>
+    <div class="product-form container mt-5">
+        <h2 class="text-center mb-4">Ajouter un Produit</h2>
         {{ form_start(form, {'attr': {'data-turbo': 'true'}}) }}
-        <div class="product-fields">
-            <div>
-                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)' } }) }}
-                <div id="image-preview" style="width: 200px; height: 200px; border: 1px solid #ccc;">
+        <div class="row mb-4">
+            <div class="col-md-6">
+                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)', 'class': 'form-control' } }) }}
+                <div id="image-preview" style="width: 100%; height: 200px; border: 1px solid #ccc; margin-top: 10px;">
                     <!-- L'image prévisualisée s'affichera ici -->
                 </div>
             </div>
-            {{ form_row(form.name) }}
-            {{ form_row(form.price) }}
-            {{ form_end(form) }} <!-- N'oublie pas de fermer le formulaire -->
-            <div class="d-flex justify-content-end mt-3">
-                <button type="submit" class="btn btn-remove">Ajouter</button>
+            <div class="col-md-6">
+                {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }}
+                {{ form_row(form.price, { 'attr': {'class': 'form-control'} }) }}
             </div>
         </div>
-    </div>
-        
 
+        <h3 class="mt-4">Stocks</h3>
+        <div class="stocks">
+            {% for stock in form.stocks %}
+                <div class="stock-item mb-3 border rounded p-3">
+                    <div class="row">
+                        <div class="col-md-8">
+                            {{ form_row(stock.quantity, { 'attr': {'class': 'form-control', 'placeholder': 'Quantité'} }) }}
+                        </div>
+                        <div class="col-md-4">
+                            <input type="hidden" name="{{ stock.size.vars.full_name }}" value="{{ stock.size.vars.value }}" /> 
+                            <div class="form-control-plaintext text-center">{{ stock.size.vars.value }}</div> {# Affiche la taille #}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="d-flex justify-content-end mt-3">
+            <button type="submit" class="btn btn-remove">Ajouter</button>
+        </div>
+        {{ form_end(form) }} <!-- N'oublie pas de fermer le formulaire -->
     </div>
 
     <div class="product-list">
@@ -45,20 +62,18 @@
                 <span class="separatorVertical"></span>
                 <p>Taille disponible :</p>
                 <div class="stock-list">
-                    <p>XS : {% if product.stocks[0].quantityXS is not null %}{{ product.stocks[0].quantityXS }}{% else %}Non disponible{% endif %}</p>
-                    <p>S : {% if product.stocks[0].quantityS is not null %}{{ product.stocks[0].quantityS }}{% else %}Non disponible{% endif %}</p>
-                    <p>M : {% if product.stocks[0].quantityM is not null %}{{ product.stocks[0].quantityM }}{% else %}Non disponible{% endif %}</p>
-                    <p>L : {% if product.stocks[0].quantityL is not null %}{{ product.stocks[0].quantityL }}{% else %}Non disponible{% endif %}</p>
-                    <p>XL : {% if product.stocks[0].quantityXL is not null %}{{ product.stocks[0].quantityXL }}{% else %}Non disponible{% endif %}</p>
+                    {% for stock in product.stocks %}
+                        <p>{{ stock.size }} : {{ stock.quantity is not null ? stock.quantity : 'Non disponible' }}</p>
+                    {% endfor %}
                 </div>
-            {% endif %}
+        {% endif %}
             <div>    
-                <a href="{{ path('product_edit', { id: product.id }) }}" class="btn-remove">Modifier</a>
+                <a href="{{ path('product_edit', { id: product.id }) }}" class="btn btn-remove">Modifier</a>
                 
                 <a href="{{ path('product_delete', { id: product.id }) }}" onclick="event.preventDefault(); 
                     if(confirm('Êtes-vous sûr de vouloir supprimer ce produit ?')) {
                         document.getElementById('delete-form-{{ product.id }}').submit();
-                    }" class="btn-remove">Supprimer</a>
+                    }" class="btn btn-remove">Supprimer</a>
 
                 <form id="delete-form-{{ product.id }}" action="{{ path('product_delete', { id: product.id }) }}" method="post" style="display: none;">
                     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ product.id) }}">
@@ -67,6 +82,4 @@
         </div>
         {% endfor %}
     </div>
-
-        
 {% endblock %}

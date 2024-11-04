@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Stock;
+use App\Entity\Product;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -15,6 +16,11 @@ class StockRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Stock::class);
     }
+
+    public function findStockByProductAndSize(Product $product, string $size): ?Stock {
+        return $this->findOneBy(['product' => $product, 'size' => $size]);
+    }
+
 
     //    /**
     //     * @return Stock[] Returns an array of Stock objects
@@ -41,3 +47,5 @@ class StockRepository extends ServiceEntityRepository
     //        ;
     //    }
 }
+
+
