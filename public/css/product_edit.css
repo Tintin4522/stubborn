@@ -49,6 +49,11 @@
 .form-control {
     max-width: 80%;
     margin-left: 1rem;
+    text-align: center;
+}
+
+.stock-item {
+    gap: 1rem;
 }
 
 .stocks {
@@ -60,4 +65,14 @@
 
 .stocks2 {
     display: none;
+}
+
+label[for^="product_stocks_"] {
+    display: none;
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }

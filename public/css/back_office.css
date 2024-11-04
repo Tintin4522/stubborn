@@ -81,3 +81,10 @@
 .stocks2 {
     display: none;
 }
+
+.stocks {
+    display: flex;                /* Utiliser Flexbox */
+    justify-content: center;      /* Centrer horizontalement */
+    align-items: center;          /* Centrer verticalement */
+    height: 100%;                 /* Optionnel : hauteur du conteneur */
+}
