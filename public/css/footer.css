@@ -4,8 +4,7 @@ footer {
     background-color: #f8f9fa; /* Optionnel : couleur de fond */
     margin-top: 20px; /* Optionnel : espace au-dessus du footer */
     color: black; /* Couleur du texte en noir */
-    border: 5px solid transparent; /* Bordure pour créer de l'espace */
-    border-radius: 15px; /* Pour adoucir les coins si nécessaire */
+    border-top: 3px solid black;
 }
 
 /* Styles pour les paragraphes */

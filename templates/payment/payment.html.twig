@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Paiement</title>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <h1>Procéder au Paiement</h1>
+    <div id="card-element"><!-- Champ de carte --></div>
+    <button id="pay-button">Payer</button>
+
+    <script>
+        // Initialisation de Stripe
+        const stripe = Stripe('pk_test_oKhSR5nslBRnBZpjO6KuzZeX'); // Utilisez votre clé publique Stripe
+        const elements = stripe.elements();
+
+        // Création de l'élément de carte
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        const redirectUrl = "{{ path('cart_show') }}";
+        
+        // Gestion du bouton de paiement
+        document.getElementById('pay-button').addEventListener('click', function () {
+            fetch('/create-payment-intent', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Utilisez le clientSecret pour initier le paiement avec Stripe.js
+                stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: cardElement
+                    }
+                }).then(result => {
+                    if (result.error) {
+                        console.error(result.error.message); // Affiche l'erreur si le paiement échoue
+                    } else {
+                        // Paiement réussi
+                        alert("Paiement réussi !");
+                        // Redirection vers le panier
+                        window.location.href = redirectUrl; // Redirige vers l'URL du panier
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

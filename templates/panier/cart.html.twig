@@ -8,9 +8,9 @@
 {% block title %}Panier{% endblock %}
 
 {% block body %}
-    <div class="product-list">
+    <div class="mt-4 product-list">
         {% for item in cartItems %}
-            <div class="product-item">
+            <div class="mt-4 product-item">
                 {% if item.product.imageFilename %}
                     <img src="{{ asset('images-produits/' ~ item.product.imageFilename) }}" alt="{{ item.product.name }}">
                 {% else %}
@@ -27,7 +27,7 @@
         
         <div class="total-container">
             <p class="total-box">Total : {{ total }} €</p> 
-            <button class="button-finalize btn btn-success">Finaliser l'achat</button>
+            <a href="payment" class="button-finalize"><button class="btn btn-success">Finaliser l'achat</button></a>
             <a href="{{ path('shop_products') }}" class="btn btn-continue">Continuer mes achats</a>
         </div>
         

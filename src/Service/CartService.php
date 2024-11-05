@@ -32,11 +32,9 @@ class CartService
         // Si aucun panier n'est trouvé, créez-en un nouveau
         if ($this->panier === null) {
             $this->panier = new Panier();
-            
-            // Assurez-vous d'associer le panier à l'utilisateur
-            $user = $this->entityManager->getRepository(User::class)->find($userId); // Assurez-vous d'importer la classe User
+            $user = $this->entityManager->getRepository(User::class)->find($userId); 
             if ($user !== null) {
-                $this->panier->setUser($user); // Associer l'utilisateur au panier
+                $this->panier->setUser($user); 
             } else {
                 throw new \Exception("L'utilisateur avec l'ID $userId n'a pas été trouvé.");
             }
@@ -47,35 +45,14 @@ class CartService
         }
     }
 
-
     // Méthode pour obtenir les éléments du panier
     public function getCartItems(): Collection
     {
-        // Vérifiez que $panier est initialisé avant d'y accéder
         if ($this->panier !== null) {
-            return $this->panier->getItems(); // Utilisez la méthode getItems de l'entité Panier
+            return $this->panier->getItems(); 
         }
 
-        return new ArrayCollection(); // Retourne une collection vide si aucun panier n'est trouvé
+        return new ArrayCollection(); 
     }
-
-    // Ajoute un article au panier
-    public function addItemToCart(PanierItem $item): void
-    {
-        if ($this->panier !== null) {
-            $this->panier->addItem($item); // Assurez-vous que la méthode addItem existe dans votre entité Panier
-            $this->entityManager->persist($this->panier);
-            $this->entityManager->flush();
-        }
-    }
-
-    // Retire un article du panier
-    public function removeItemFromCart(PanierItem $item): void
-    {
-        if ($this->panier !== null) {
-            $this->panier->removeItem($item); // Assurez-vous que la méthode removeItem existe dans votre entité Panier
-            $this->entityManager->persist($this->panier);
-            $this->entityManager->flush();
-        }
-    }
+    
 }

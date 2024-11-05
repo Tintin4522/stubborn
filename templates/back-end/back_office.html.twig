@@ -8,49 +8,45 @@
 {% block title %}Back-office - Gestion des produits{% endblock %}
 
 {% block body %}
-    <div class="product-form container mt-5">
+<div class="container mt-5">
+    <div class="product-form">
         <h2 class="text-center mb-4">Ajouter un Produit</h2>
         {{ form_start(form, {'attr': {'data-turbo': 'true'}}) }}
+
         <div class="row mb-4">
-            <div class="col-md-6">
-                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)', 'class': 'form-control' } }) }}
+            <div class="col-md-4">
+                {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)', 'class': 'form-control-img' } }) }}
                 <div id="image-preview" style="width: 100%; height: 200px; border: 1px solid #ccc; margin-top: 10px;">
                     <!-- L'image prévisualisée s'affichera ici -->
                 </div>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 {{ form_row(form.name, { 'attr': {'class': 'form-control'} }) }}
                 {{ form_row(form.price, { 'attr': {'class': 'form-control'} }) }}
             </div>
-        </div>
-
-        <h3 class="mt-4 text-center">Stocks</h3>
-        <div class="stocks">
-            {% for stock in form.stocks %}
-                <div class="stock-item mb-3 border rounded p-3">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <input type="hidden" name="{{ stock.vars.full_name }}[size]" value="{{ stock.size.vars.value }}" />
-                            <div class="form-control-plaintext text-center">{{ stock.size.vars.value }}</div>
-                        </div>
-                        <div class="col-md-8">
-                            {{ form_row(stock.quantity, { 'attr': {'class': 'form-control quantity-input', 'placeholder': 'Quantité', 'id': 'quantity-input-' ~ loop.index} }) }}
-                        </div>
+        
+            <div class="col-mb-4 stocks">
+                {% for stock in form.stocks %}
+                    <div class="stock-item col-md-2 mb-3"> <!-- Changer la largeur de la colonne ici -->
+                        <input type="hidden" name="{{ stock.vars.full_name }}[size]" value="{{ stock.size.vars.value }}" />
+                        <div class="form-control-plaintext text-center">{{ stock.size.vars.value }}</div>
+                        {{ form_row(stock.quantity, { 'attr': {'class': 'form-control quantity-input', 'placeholder': 'Quantité', 'id': 'quantity-input-' ~ loop.index} }) }}
                     </div>
-                </div>
-            {% endfor %}
+                {% endfor %}
+            </div>
         </div>
 
         <div class="d-flex justify-content-end mt-3">
             <button type="submit" class="btn btn-remove">Ajouter</button>
         </div>
+        
         {{ form_end(form) }} <!-- N'oublie pas de fermer le formulaire -->
     </div>
 
-    <div class="product-list">
+    <div class="mb-5 text-center product-list">
         <h2>Produits</h2>
         {% for product in products %}
-        <div class="product-item">
+        <div class="mt-4 product-item">
             {% if product.imageFilename %}
                 <img src="{{ asset('images-produits/' ~ product.imageFilename) }}" alt="{{ product.name }}">
             {% else %}
@@ -82,4 +78,5 @@
         </div>
         {% endfor %}
     </div>
+</div>
 {% endblock %}

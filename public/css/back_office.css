@@ -1,9 +1,13 @@
+.container {
+    width: 100%; 
+    margin: 0 auto; 
+}
+
 .product-form {
     padding: 20px;
     background-color: #ffe5e5;
     margin: 20px auto;
-    width: 80%;
-    border-radius: 5px;
+    width: 90%;
     border: 2px solid black;
     overflow: hidden;
 }
@@ -23,7 +27,7 @@
 }
 
 .product-list {
-    width: 80%;
+    width: 90%;
     margin: 20px auto;
 }
 
@@ -68,10 +72,14 @@
     margin: 0 10px; /* Espace autour de la ligne de séparation */
 }
 
+.stock-item {
+    text-align: center;
+}
+
 .stock-list {
     display: flex;
-    flex-direction: column; /* Assure que les stocks s'affichent en colonne */
-    margin-top: 10px; /* Ajoute un peu d'espace au-dessus de la liste des stocks */
+    flex-direction: column; 
+    margin-top: 10px; 
 }
 
 .stock-list p {
@@ -83,8 +91,15 @@
 }
 
 .stocks {
-    display: flex;                /* Utiliser Flexbox */
-    justify-content: center;      /* Centrer horizontalement */
-    align-items: center;          /* Centrer verticalement */
-    height: 100%;                 /* Optionnel : hauteur du conteneur */
+    display: flex;                
+    justify-content: center;     
+    align-items: center;          
+    height: 100%;           
+    margin-top: 2rem;     
+}
+
+.quantity-input::-webkit-inner-spin-button,
+.quantity-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
 }
