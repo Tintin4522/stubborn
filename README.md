@@ -15,8 +15,11 @@ Bienvenue sur le site de Stubborn, site de E-Commerce :
 ## PREREQUIS 
 
 1 - PHP 8.2 ou plus récent
+
 2 - Composer pour la gestion des dépendances PHP
+
 3 - MySQL pour la base de donnée
+
 4 - Symfony CLI (facultatif, mais recommandé pour la gestion du projet)
 
 -------------------------------------------------------------
