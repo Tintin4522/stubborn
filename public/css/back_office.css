@@ -46,16 +46,16 @@
 }
 
 .btn-remove {
-    background-color: white; /* Couleur de fond blanche */
-    border: 2px solid black; /* Bordure noire */
-    color: black; /* Couleur du texte noire */
-    padding: 10px 15px; /* Ajoute du padding pour un meilleur rendu */
-    text-align: center; /* Centre le texte */
-    text-decoration: none; /* Supprime le soulignement */
-    display: inline-block; /* Permet au bouton d'être en ligne avec d'autres éléments */
-    border-radius: 5px; /* Arrondit les coins */
-    margin-top: 10px; /* Espace au-dessus */
-    cursor: pointer; /* Change le curseur au survol */
+    background-color: white;
+    border: 2px solid black;
+    color: black;
+    padding: 10px 15px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
 }
 
 .btn-remove:hover {
@@ -65,11 +65,11 @@
 }
 
 .separatorVertical {
-    width: 1px; /* Largeur de la ligne de séparation */
-    background-color: #ccc; /* Couleur de la ligne de séparation */
-    height: 50px; /* Hauteur de la ligne de séparation */
-    display: inline-block; /* Pour s'afficher dans la même ligne */
-    margin: 0 10px; /* Espace autour de la ligne de séparation */
+    width: 1px; 
+    background-color: #ccc;
+    height: 50px; 
+    display: inline-block; 
+    margin: 0 10px; 
 }
 
 .stock-item {
@@ -83,7 +83,7 @@
 }
 
 .stock-list p {
-    margin: 0; /* Enlève les marges par défaut des paragraphes pour un meilleur alignement */
+    margin: 0;
 }
 
 .stocks2 {

@@ -23,7 +23,7 @@ class PaymentController extends AbstractController
     #[Route('/create-payment-intent', name: 'create_payment_intent', methods: ['POST'])]
     public function createPaymentIntent()
     {
-        $amount = 1000; // Montant fixe de 10 € en centimes
+        $amount = 1000; 
     
         if ($amount <= 0) {
             throw new \Exception('Le montant doit être supérieur à zéro.');
@@ -31,17 +31,15 @@ class PaymentController extends AbstractController
     
         $paymentIntent = $this->stripeService->createPaymentIntent($amount);
     
-        // Logique de réussite du paiement
         if ($paymentIntent->status === 'succeeded') {
     
-            // Formatage du montant pour l'affichage
-            $formattedAmount = $amount / 100; // Convertir les centimes en euros
+            $formattedAmount = $amount / 100; 
     
             return new JsonResponse([
                 'clientSecret' => $paymentIntent->client_secret,
-                'amount' => $formattedAmount, // Montant dans la réponse
-                'message' => 'Paiement réussi de ' . $formattedAmount . ' €', // Message de succès
-                'redirectUrl' => $this->generateUrl('cart_show', [], UrlGeneratorInterface::ABSOLUTE_URL) // URL de redirection
+                'amount' => $formattedAmount, 
+                'message' => 'Paiement réussi de ' . $formattedAmount . ' €', 
+                'redirectUrl' => $this->generateUrl('cart_show', [], UrlGeneratorInterface::ABSOLUTE_URL) 
             ]);
         }
     

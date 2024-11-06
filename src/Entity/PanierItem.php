@@ -17,7 +17,7 @@ class PanierItem
     private $quantity;
 
     #[ORM\Column(type: 'string', length: 10)]
-    private $size; // Ajoutez ce champ pour stocker la taille
+    private $size; 
 
     #[ORM\ManyToOne(targetEntity: Panier::class, inversedBy: 'items')]
     #[ORM\JoinColumn(nullable: false)]

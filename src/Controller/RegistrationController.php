@@ -38,8 +38,8 @@ class RegistrationController extends AbstractController
             $plainPasswordConfirm = $form->get('plainPasswordConfirm')->getData();
             
             if ($plainPassword !== $plainPasswordConfirm) {
-                $this->addFlash('error', 'Les mots de passe ne correspondent pas !!'); // Message d'erreur si les mots de passe ne correspondent pas
-                return $this->redirectToRoute('app_register'); // Redirige vers le formulaire d'inscription
+                $this->addFlash('error', 'Les mots de passe ne correspondent pas !!'); 
+                return $this->redirectToRoute('app_register'); 
             }
 
             // encode the plain password

@@ -34,7 +34,7 @@ class ProductType extends AbstractType
             ->add('isFeatured', CheckboxType::class, [
                 'required' => false,
                 'label' => 'Mettre en avant :',
-                'label_attr' => ['class' => 'checkbox-label'], // Classe pour le label
+                'label_attr' => ['class' => 'checkbox-label'], 
                 'attr' => ['class' => 'checkbox-input'],
             ])
             ->add('stocks', CollectionType::class, [
@@ -50,7 +50,6 @@ class ProductType extends AbstractType
         $builder->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) {
             $product = $event->getData();
         
-            // Vérifie si le produit existe et gère les stocks
             if ($product) {
                 // Définir les tailles disponibles
                 $sizes = ['XS', 'S', 'M', 'L', 'XL'];
@@ -61,15 +60,13 @@ class ProductType extends AbstractType
                     })->first();
         
                     if (!$existingStock) {
-                        // Si aucun stock n'existe, créez-en un nouveau
+                        // Si aucun stock n'existe, créer un nouveau
                         $stock = new Stock();
-                        $stock->setSize($size); // Assurez-vous d'avoir un setter pour la taille dans l'entité Stock
-                        $stock->setQuantity(0); // Initialisez la quantité à 0 ou laissez vide
-                        $stock->setProduct($product); // Liez le stock au produit
-        
+                        $stock->setSize($size); 
+                        $stock->setQuantity(0); 
+                        $stock->setProduct($product);
                         $product->getStocks()->add($stock);
                     }
-                    // Si le stock existe, il sera affiché et pourra être modifié par l'utilisateur
                 }
             }
         });

@@ -1,15 +1,14 @@
 footer {
-    text-align: center; /* Centre le texte */
-    padding: 20px 0; /* Ajoute un peu d'espace autour du texte */
-    background-color: #f8f9fa; /* Optionnel : couleur de fond */
-    margin-top: 20px; /* Optionnel : espace au-dessus du footer */
-    color: black; /* Couleur du texte en noir */
+    text-align: center; 
+    padding: 20px 0; 
+    background-color: #f8f9fa;
+    margin-top: 20px;
+    color: black;
     border-top: 3px solid black;
 }
 
-/* Styles pour les paragraphes */
 footer p {
-    margin: 5px 0; /* Ajoute un peu d'espace entre les lignes */
+    margin: 5px 0;
 }
 
 footer p a{

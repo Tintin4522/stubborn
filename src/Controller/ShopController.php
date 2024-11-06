@@ -54,7 +54,7 @@ class ShopController extends AbstractController
             case '35-50':
                 return $price > 35 && $price <= 50;
             default:
-                return true; // Si aucun filtre, retourner true
+                return true; 
         }
     }
 

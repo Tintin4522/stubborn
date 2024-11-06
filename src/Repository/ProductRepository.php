@@ -19,7 +19,7 @@ class ProductRepository extends ServiceEntityRepository
     public function findFeaturedProducts()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.isFeatured = :featured') // Assurez-vous d'avoir un champ isFeatured dans votre entité Product
+            ->andWhere('p.isFeatured = :featured') 
             ->setParameter('featured', true)
             ->getQuery()
             ->getResult();

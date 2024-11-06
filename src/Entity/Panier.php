@@ -20,7 +20,7 @@ class Panier
     private ?User $user = null;
 
     #[ORM\OneToMany(targetEntity: PanierItem::class, mappedBy: 'panier', cascade: ['persist', 'remove'])]
-    private Collection $items; // Utilisation d'une Collection pour stocker les éléments du panier
+    private Collection $items; 
 
     public function __construct()
     {
@@ -50,7 +50,6 @@ class Panier
     public function removeItem(PanierItem $item): self
     {
         if ($this->items->removeElement($item)) {
-            // Set the owning side to null (unless already changed)
             if ($item->getPanier() === $this) {
                 $item->setPanier(null);
             }

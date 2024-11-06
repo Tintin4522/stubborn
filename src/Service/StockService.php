@@ -26,21 +26,18 @@ class StockService {
      * @return void
      */
     public function manageStock(Product $product, string $size, int $quantity): void {
-        // Vérifier si un stock existe déjà pour ce produit et cette taille
+
         $stock = $this->stockRepository->findStockByProductAndSize($product, $size);
 
         if ($stock) {
-            // Mettre à jour la quantité existante
             $stock->setQuantity($stock->getQuantity() + $quantity);
         } else {
-            // Créer un nouveau stock
             $stock = new Stock();
             $stock->setProduct($product);
             $stock->setSize($size);
             $stock->setQuantity($quantity);
         }
 
-        // Enregistrer le stock dans la base de données
         $this->entityManager->persist($stock);
         $this->entityManager->flush();
     }

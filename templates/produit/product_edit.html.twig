@@ -14,7 +14,6 @@
         {{ form_start(form, {'attr': {'action': path('product_edit', { id: product.id }), 'method': 'POST'}}) }}
         
         <div class="row g-3 mt-5">
-            <!-- Section Image -->
             <div class="col-md-4">
                 <div>
                     {{ form_row(form.image, { 'attr': { 'onchange': 'previewImage(event)' } }) }}
@@ -28,7 +27,6 @@
                 </div>
             </div>
             
-            <!-- Section Détails du produit -->
             <div class="col-md-8">
                 {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
                 {{ form_row(form.price, {'attr': {'class': 'form-control'}}) }}

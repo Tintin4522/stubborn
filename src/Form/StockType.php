@@ -17,7 +17,7 @@ class StockType extends AbstractType
         $builder
             ->add('size', TextType::class, [
                 'label' => 'Taille',
-                'attr' => ['readonly' => true], // Pour ne pas permettre la modification de la taille
+                'attr' => ['readonly' => true], 
             ])
             ->add('quantity', IntegerType::class, [
                 'label' => 'Quantité :',
